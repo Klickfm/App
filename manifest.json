@@ -3,20 +3,22 @@
   "short_name": "KLICK FM",
   "description": "Radio, Podcasts & ePaper für Rhein-Sieg, Neuwied, Westerwald und Altenkirchen",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#020617",
   "theme_color": "#0284c7",
   "icons": [
     {
-      "src": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=192&auto=format&fit=crop",
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=512&auto=format&fit=crop",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
