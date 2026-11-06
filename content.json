@@ -1,0 +1,108 @@
+{
+  "last_updated": "2026-11-06T15:54:01.567Z",
+  "radio": {
+    "stream_url": "https://stream.laut.fm/klick-fm",
+    "station_name": "KLICK FM",
+    "claim": "Die besten Hits der 60er, 70er, 80er & 90er · Regionale Infos",
+    "cover_url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=600&auto=format&fit=crop",
+    "schedule": [
+      {
+        "time": "06:30 - 09:30",
+        "title": "RSW Guten Morgen & Regional-Flash",
+        "desc": "Wetter, Verkehr & News für SU, NR, WW, AK",
+        "isLive": false
+      },
+      {
+        "time": "09:30 - 17:00",
+        "title": "Der Beste Musikmix & Pop-Klassiker",
+        "desc": "Hits am laufenden Band & 90-Sekunden Lokal-Update",
+        "isLive": true
+      },
+      {
+        "time": "17:00 - 19:30",
+        "title": "RSW Feierabend & Kommunal-Report",
+        "desc": "Talks mit Bürgermeistern, Vereinen & Handwerk",
+        "isLive": false
+      },
+      {
+        "time": "19:30 - 00:00",
+        "title": "KLICK FM Lounge & Rock Classics",
+        "desc": "Entspannt durch den Abend mit Kult-Tracks",
+        "isLive": false
+      }
+    ]
+  },
+  "ticker": [
+    "A3 / B42: Freie Fahrt im Berufsverkehr zwischen Siebengebirge und Neuwied",
+    "Westerwaldkreis: Neue Kultur- und Wandertermine für November online",
+    "Rhein-Sieg-Kreis: Förderprogramm für Solardächer auf Vereinsheimen gestartet",
+    "Altenkirchen: Das neue Kommunal-ePaper ist ab sofort verfügbar"
+  ],
+  "epaper_issues": [
+    {
+      "id": "kw45_2026",
+      "kw": "KW 45 / 2026",
+      "title": "RSW Magazin • KW 45",
+      "pdf_url": "media/epaper/epaper_kw45_2026.pdf",
+      "pages": [
+        {
+          "num": 1,
+          "category": "Titelthema",
+          "headline": "Wirtschaftsachse Rhein-Westerwald im Fokus",
+          "text": "Wie mittelständische Betriebe in Neuwied, Altenkirchen und im Rhein-Sieg-Kreis modernste Technologien nutzen.",
+          "img": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80"
+        }
+      ]
+    }
+  ],
+  "podcasts": [
+    {
+      "id": "pod_ak_weyerbusch_45",
+      "region": "AK",
+      "town": "Weyerbusch",
+      "regionName": "Kreis Altenkirchen",
+      "title": "Weyerbusch Aktuell: Neue Beschlüsse im Gemeinderat",
+      "desc": "Bericht zur aktuellen Sitzung, Ortsentwicklung und Termine der Vereine.",
+      "duration": "24 Min",
+      "date": "04. Nov 2026",
+      "audio_url": "media/audio/ak_weyerbusch_kw45_2026.mp3",
+      "cover": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&q=80"
+    },
+    {
+      "id": "pod_su_siegburg_45",
+      "region": "SU",
+      "town": "Siegburg",
+      "regionName": "Rhein-Sieg-Kreis",
+      "title": "RSW Fokus: Ausbau der Siegtalstrecke & ÖPNV",
+      "desc": "Experten und Bürgerinitiativen im Gespräch über Taktzeiten und Pünktlichkeit.",
+      "duration": "28 Min",
+      "date": "03. Nov 2026",
+      "audio_url": "media/audio/su_siegburg_kw45_2026.mp3",
+      "cover": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&q=80"
+    },
+    {
+      "id": "pod_ww_montabaur_45",
+      "region": "WW",
+      "town": "Montabaur",
+      "regionName": "Westerwaldkreis",
+      "title": "Westerwälder Meister: Zwischen Tradition & KI",
+      "desc": "Wie ein Traditionsbetrieb moderne Fertigungsprozesse meistert.",
+      "duration": "31 Min",
+      "date": "02. Nov 2026",
+      "audio_url": "media/audio/ww_montabaur_kw45_2026.mp3",
+      "cover": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80"
+    },
+    {
+      "id": "pod_nr_neuwied_45",
+      "region": "NR",
+      "town": "Neuwied",
+      "regionName": "Kreis Neuwied",
+      "title": "Rheinufer neu gedacht: Hochwasserschutz & Flanieren",
+      "desc": "Stadtplaner stellen das neue Uferkonzept der Deichstadt vor.",
+      "duration": "19 Min",
+      "date": "01. Nov 2026",
+      "audio_url": "media/audio/nr_neuwied_kw45_2026.mp3",
+      "cover": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80"
+    }
+  ]
+}
