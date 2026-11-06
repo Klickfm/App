@@ -3,1118 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>KLICK FM & RSW Regional – Radio, Podcasts & ePaper</title>
+  <title>KLICK FM & RSW Regional - Radio, Podcasts und ePaper</title>
+
+  <!-- PWA & Web App Manifest -->
   <link rel="manifest" href="manifest.json">
-  <!-- PWA & Mobile Web Meta -->
   <meta name="theme-color" content="#0284c7">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="KLICK FM">
-  <meta name="description" content="Radio, Podcasts & ePaper für Rhein-Sieg (SU), Neuwied (NR), Westerwald (WW) und Altenkirchen (AK).">
+  <meta name="description" content="Radio, Podcasts & ePaper Flipbooks für Rhein-Sieg (SU), Neuwied (NR), Westerwald (WW) und Altenkirchen (AK)">
 
-  <!-- Open Graph / WhatsApp / Facebook Share Preview -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="KLICK FM & RSW Regional – Radio, Podcasts & ePaper">
-  <meta property="og:description" content="Der Sound der Region: 60er-90er Hits, Live-Radio, lokale Podcasts aus den Kreisen SU, NR, WW & AK und das wöchentliche digitale ePaper.">
+  <meta property="og:title" content="KLICK FM & RSW Regional - Radio, Podcasts & ePaper">
+  <meta property="og:description" content="Die besten Hits der 60er bis 90er im Live-Radio, lokale Podcasts und interaktive Kommunal-ePaper.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&h=630&auto=format&fit=crop">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="KLICK FM & RSW">
 
-  <!-- Inline Web App Manifest Data-URI -->
-  <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22KLICK%20FM%20%26%20RSW%20Regional%22%2C%22short_name%22%3A%22KLICK%20FM%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230284c7%22%2C%22theme_color%22%3A%22%230284c7%22%7D">
-
-  <!-- Tailwind CSS & Google Fonts -->
+  <!-- Tailwind CSS & Lucide Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['Outfit', 'sans-serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              500: '#0284c7',
-              600: '#0369a1',
-              accent: '#f97316',
-              whatsapp: '#25D366',
-              whatsappHover: '#20ba5a'
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    /* Equalizer Sound Waves */
-    .eq-bar {
-      animation: eqBounce 1.2s ease-in-out infinite alternate;
-      transform-origin: bottom;
+    body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .ticker-wrap { overflow: hidden; white-space: nowrap; }
+    .ticker-move { display: inline-block; animation: ticker 45s linear infinite; }
+    .ticker-move:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
     }
-    @keyframes eqBounce {
-      0% { height: 20%; }
-      50% { height: 100%; }
-      100% { height: 35%; }
-    }
-    .eq-bar:nth-child(1) { animation-delay: 0.1s; }
-    .eq-bar:nth-child(2) { animation-delay: 0.4s; }
-    .eq-bar:nth-child(3) { animation-delay: 0.2s; }
-    .eq-bar:nth-child(4) { animation-delay: 0.6s; }
-    .eq-bar:nth-child(5) { animation-delay: 0.3s; }
-
-    /* News Ticker Marquee */
-    @keyframes tickerScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .ticker-track {
-      display: inline-flex;
-      white-space: nowrap;
-      animation: tickerScroll 38s linear infinite;
-    }
-    .ticker-track:hover {
-      animation-play-state: paused;
-    }
-
-    /* Tabs switching */
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: #020617; }
-    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #0f172a; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
   </style>
 </head>
-<body class="h-full flex flex-col font-sans select-none antialiased bg-slate-950 text-slate-100 overflow-hidden">
+<body class="h-full flex flex-col bg-slate-950 text-slate-100 overflow-hidden select-none">
 
-  <!-- ============================================== -->
-  <!-- 1. TOP HEADER & BRAND BAR                      -->
-  <!-- ============================================== -->
-  <header class="bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 shrink-0 z-30 px-3.5 py-2.5 sticky top-0 flex flex-col gap-1.5 shadow-md">
-    <div class="flex items-center justify-between gap-2">
-      
-      <!-- Logo & Claim -->
-      <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchTab('tab-radio')">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-orange-500 p-0.5 flex items-center justify-center shadow-lg shadow-sky-500/20 shrink-0">
-          <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center text-sky-400">
-            <!-- Radio Broadcast SVG -->
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.85 1.2 5.41 3.12 7.24l1.42-1.42C4.95 16.36 4 14.29 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 2.29-.95 4.36-2.54 5.82l1.42 1.42C20.8 17.41 22 14.85 22 12c0-5.52-4.48-10-10-10zm0 4c-3.31 0-6 2.69-6 6 0 1.71.72 3.25 1.88 4.35l1.42-1.42C8.52 14.21 8 13.16 8 12c0-2.21 1.79-4 4-4s4 1.79 4 4c0 1.16-.52 2.21-1.3 2.93l1.42 1.42C17.28 15.25 18 13.71 18 12c0-3.31-2.69-6-6-6zm0 4a2 2 0 100 4 2 2 0 000-4z"/></svg>
-          </div>
-        </div>
-        <div class="min-w-0">
-          <div class="flex items-center gap-1.5 leading-tight">
-            <span class="text-base font-extrabold tracking-tight font-heading text-white">KLICK FM</span>
-            <span class="text-[10px] px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-400 font-bold border border-orange-500/30">RSW</span>
-          </div>
-          <p class="text-[10px] text-slate-400 font-medium truncate">Rhein-Sieg · Neuwied · Westerwald · AK</p>
-        </div>
+  <!-- Header -->
+  <header class="flex-none bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex items-center justify-between z-20">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20">
+        <i data-lucide="radio" class="w-5 h-5 text-white"></i>
       </div>
-
-      <!-- Quick Action Badges & Sharing -->
-      <div class="flex items-center gap-1.5 shrink-0">
-        <!-- Live Badge -->
-        <div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-bold">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span class="hidden xs:inline">ON AIR</span>
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="font-extrabold text-base tracking-tight text-white">KLICK FM</span>
+          <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">RSW</span>
         </div>
-
-        <!-- WhatsApp Quick Share -->
-        <button onclick="shareViaWhatsApp('App')" title="App via WhatsApp teilen" 
-                class="flex items-center gap-1 bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-bold text-xs px-2.5 py-1.5 rounded-lg shadow-sm transition active:scale-95">
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-          <span class="text-[11px] hidden sm:inline">WhatsApp</span>
-        </button>
-
-        <!-- Native Share / Link -->
-        <button onclick="shareAppGeneral()" title="Teilen" 
-                class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition active:scale-95">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
-        </button>
-
-        <!-- PWA Install Button (auto-shown if supported) -->
-        <button id="pwaInstallBtn" class="hidden items-center gap-1 bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs px-2.5 py-1.5 rounded-lg shadow-sm transition">
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-          <span class="text-[11px]">Installieren</span>
-        </button>
+        <p class="text-[11px] text-slate-400">Rhein-Sieg · Neuwied · Westerwald · AK</p>
       </div>
     </div>
-
-    <!-- 2. Animated Regional News Ticker -->
-    <div class="relative overflow-hidden bg-slate-950/70 border border-slate-800/80 rounded-lg py-1 px-2.5 flex items-center gap-2 text-xs">
-      <span class="flex items-center gap-1 font-bold text-orange-400 text-[10px] tracking-wider uppercase shrink-0">
-        <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
-        Ticker:
-      </span>
-      <div class="overflow-hidden whitespace-nowrap w-full">
-        <div id="newsTickerContent" class="ticker-track text-slate-300 font-medium text-[11px]">
-          <!-- Populated from content.json or fallback -->
-          <span>Lade Regional-Meldungen für Rhein-Sieg, Neuwied, Westerwald und Altenkirchen...</span>
-        </div>
-      </div>
+    <div class="flex items-center space-x-2">
+      <a href="https://wa.me/?text=H%C3%B6r%20mal%20in%20KLICK%20FM%20rein%3A%20https%3A%2F%2Fklickfm.github.io%2FApp%2F" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30 border border-emerald-500/30 text-xs font-semibold flex items-center space-x-1.5 transition-colors">
+        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+        <span class="hidden sm:inline">WhatsApp</span>
+      </a>
     </div>
   </header>
 
-  <!-- ============================================== -->
-  <!-- MAIN SCROLLABLE CONTENT AREA                   -->
-  <!-- ============================================== -->
-  <main class="flex-1 overflow-y-auto relative pb-36" id="mainContainer">
-
-    <!-- ============================================== -->
-    <!-- TAB 1: LIVE-RADIO                              -->
-    <!-- ============================================== -->
-    <section id="tab-radio" class="tab-content active px-4 py-5 max-w-xl mx-auto space-y-6">
-      
-      <!-- Radio Player Master Card -->
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border border-slate-800 p-6 shadow-2xl backdrop-blur-xl">
-        <!-- Glow effects -->
-        <div class="absolute -top-24 -left-24 w-52 h-52 bg-sky-500/15 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -right-24 w-52 h-52 bg-orange-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-        <!-- Cover & Visualizer -->
-        <div class="relative aspect-square max-w-[230px] mx-auto rounded-2xl overflow-hidden border border-slate-800 shadow-xl group">
-          <img id="radioStationCover" 
-               src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=600&auto=format&fit=crop" 
-               alt="KLICK FM Cover" 
-               class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
-               onerror="this.src='https://placehold.co/400x400/0f172a/38bdf8?text=KLICK+FM+LIVE'">
-          
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-
-          <!-- Animated Sound Equalizer Waves -->
-          <div id="radioVisualizer" class="absolute bottom-3 left-0 right-0 flex items-end justify-center gap-1.5 h-10 px-6 opacity-40 transition-opacity duration-300">
-            <span class="w-1.5 bg-sky-400 rounded-full eq-bar h-2"></span>
-            <span class="w-1.5 bg-sky-300 rounded-full eq-bar h-5"></span>
-            <span class="w-1.5 bg-orange-400 rounded-full eq-bar h-8"></span>
-            <span class="w-1.5 bg-orange-500 rounded-full eq-bar h-4"></span>
-            <span class="w-1.5 bg-sky-400 rounded-full eq-bar h-6"></span>
-          </div>
-
-          <!-- Bitrate Badge -->
-          <div class="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-700/60 text-[10px] font-bold flex items-center gap-1.5 text-sky-400">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span>128 kbps HD MP3</span>
-          </div>
-        </div>
-
-        <!-- Meta info -->
-        <div class="text-center mt-5 space-y-1">
-          <p id="radioShowTag" class="text-xs uppercase tracking-wider font-extrabold text-orange-400">KLICK FM LIVE</p>
-          <h2 id="radioStationTitle" class="text-xl font-extrabold text-white font-heading truncate">Der Sound Deiner Region</h2>
-          <p id="radioStationClaim" class="text-xs text-slate-400 font-medium">Die besten Hits der 60er, 70er, 80er & 90er & Lokalnews</p>
-        </div>
-
-        <!-- Controls -->
-        <div class="mt-6 flex flex-col items-center gap-4">
-          <div class="flex items-center justify-center gap-6">
-            <!-- Mute Button -->
-            <button id="radioMuteBtn" title="Stummschalten" class="w-11 h-11 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition active:scale-95 border border-slate-700/60">
-              <svg id="radioMuteSvg" class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-            </button>
-
-            <!-- Main Big Play/Pause Button -->
-            <button id="mainPlayBtn" class="w-20 h-20 rounded-full bg-gradient-to-tr from-sky-500 via-sky-400 to-orange-400 text-slate-950 flex items-center justify-center shadow-xl shadow-sky-500/30 hover:scale-105 active:scale-95 transition">
-              <svg id="mainPlaySvg" class="w-9 h-9 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-
-            <!-- Stream Reconnect Button -->
-            <button id="radioRefreshBtn" title="Stream neu verbinden" class="w-11 h-11 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition active:scale-95 border border-slate-700/60">
-              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-            </button>
-          </div>
-
-          <!-- Volume slider -->
-          <div class="w-full max-w-xs flex items-center gap-3 pt-1">
-            <svg class="w-4 h-4 fill-slate-400" viewBox="0 0 24 24"><path d="M7 9v6h4l5 5V4L11 9H7z"/></svg>
-            <input type="range" id="volumeControl" min="0" max="1" step="0.05" value="0.85" 
-                   class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-sky-400">
-            <svg class="w-4 h-4 fill-slate-400" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-          </div>
-
-          <!-- Share Radio Stream Quick Link -->
-          <div class="pt-2 flex items-center gap-2">
-            <button onclick="shareViaWhatsApp('Radio')" class="flex items-center gap-1.5 text-xs bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] border border-[#25D366]/30 px-3 py-1.5 rounded-full font-semibold transition">
-              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-              <span>Sender auf WhatsApp teilen</span>
-            </button>
-          </div>
-        </div>
+  <!-- News Ticker -->
+  <div class="flex-none bg-slate-900/50 border-b border-slate-800/80 px-3 py-1.5 text-xs flex items-center overflow-hidden">
+    <span class="flex-none flex items-center space-x-1 text-sky-400 font-bold uppercase text-[10px] tracking-wider pr-3 border-r border-slate-800 mr-3">
+      <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+      <span>Ticker</span>
+    </span>
+    <div class="ticker-wrap w-full text-slate-300">
+      <div id="ticker-content" class="ticker-move text-xs">
+        Lade regionale Meldungen...
       </div>
+    </div>
+  </div>
 
-      <!-- Sendeplan Heute -->
-      <div class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Programm & Sendeplan</h3>
-          <span class="text-[11px] text-sky-400 font-semibold">Täglich frisch</span>
+  <!-- Hauptinhalt -->
+  <main class="flex-1 overflow-y-auto custom-scroll relative p-4 pb-28 max-w-2xl mx-auto w-full">
+    
+    <!-- Tab 1: Radio Player -->
+    <section id="tab-radio" class="tab-panel space-y-6">
+      <div class="bg-gradient-to-b from-slate-900 to-slate-900/60 rounded-3xl p-6 border border-slate-800/80 shadow-2xl text-center relative overflow-hidden">
+        <div class="w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden shadow-2xl relative group border border-slate-700/50">
+          <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=600&auto=format&fit=crop" alt="KLICK FM Studio" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+          <span class="absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-900/80 backdrop-blur-md text-sky-400 border border-slate-700 flex items-center space-x-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>128 kbps laut.fm Stream</span>
+          </span>
         </div>
 
-        <div class="space-y-2" id="programScheduleList">
-          <!-- Dynamically filled from schedule data -->
+        <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400">KLICK FM LIVE</span>
+        <h2 class="text-2xl font-black text-white mt-1">KLICK FM</h2>
+        <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Die besten Hits der 60er, 70er, 80er & 90er · Regionale Infos</p>
+
+        <!-- Player Controls -->
+        <div class="mt-6 flex items-center justify-center space-x-6">
+          <button id="main-play-btn" onclick="toggleRadio()" class="w-16 h-16 rounded-full bg-sky-500 hover:bg-sky-400 text-white flex items-center justify-center shadow-lg shadow-sky-500/30 transform active:scale-95 transition-all">
+            <i id="main-play-icon" data-lucide="play" class="w-7 h-7 ml-1"></i>
+          </button>
+        </div>
+
+        <!-- Volume -->
+        <div class="mt-6 max-w-xs mx-auto flex items-center space-x-3 text-slate-400">
+          <i data-lucide="volume-2" class="w-4 h-4"></i>
+          <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.9" oninput="setVolume(this.value)" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-500">
         </div>
       </div>
     </section>
 
-    <!-- ============================================== -->
-    <!-- TAB 2: PODCASTS ON DEMAND                      -->
-    <!-- ============================================== -->
-    <section id="tab-podcasts" class="tab-content px-4 py-5 max-w-xl mx-auto space-y-5">
-      <div class="flex flex-col gap-1">
-        <h2 class="text-xl font-bold font-heading">RSW Podcasts On Demand</h2>
-        <p class="text-xs text-slate-400">Kommunalpolitik, Vereine, Kultur und Wirtschaft aus Deiner Heimat.</p>
-      </div>
-
-      <!-- Search Input -->
-      <div class="relative">
-        <input type="text" id="podcastSearch" placeholder="Podcast nach Thema, Ort oder Gast suchen..." 
-               class="w-full bg-slate-900 border border-slate-800 text-xs rounded-xl pl-9 pr-4 py-2.5 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500">
-        <svg class="w-4 h-4 fill-slate-500 absolute left-3 top-3" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-      </div>
-
-      <!-- Region Filter Tabs -->
-      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="podcastFilterBar">
-        <button class="podcast-filter px-3 py-1.5 rounded-full bg-sky-500 text-white font-bold whitespace-nowrap" data-region="ALL">Alle Regionen</button>
-        <button class="podcast-filter px-3 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800 hover:border-slate-700 whitespace-nowrap font-medium" data-region="SU">Rhein-Sieg (SU)</button>
-        <button class="podcast-filter px-3 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800 hover:border-slate-700 whitespace-nowrap font-medium" data-region="NR">Neuwied (NR)</button>
-        <button class="podcast-filter px-3 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800 hover:border-slate-700 whitespace-nowrap font-medium" data-region="WW">Westerwald (WW)</button>
-        <button class="podcast-filter px-3 py-1.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800 hover:border-slate-700 whitespace-nowrap font-medium" data-region="AK">Altenkirchen (AK)</button>
-      </div>
-
-      <!-- Podcasts List Container -->
-      <div id="podcastsListContainer" class="space-y-3">
-        <!-- Rendered by JS -->
+    <!-- Tab 2: Podcasts -->
+    <section id="tab-podcasts" class="tab-panel hidden space-y-4">
+      <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+        <i data-lucide="mic" class="w-5 h-5 text-sky-400"></i>
+        <span>Regionale Podcasts</span>
+      </h3>
+      <div id="podcasts-list" class="space-y-3">
+        <p class="text-xs text-slate-500">Lade Episoden...</p>
       </div>
     </section>
 
-    <!-- ============================================== -->
-    <!-- TAB 3: EPAPER & REGIONAL-MAGAZIN               -->
-    <!-- ============================================== -->
-    <section id="tab-epaper" class="tab-content px-4 py-5 max-w-xl mx-auto space-y-6">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-xl font-bold font-heading">Digitales ePaper</h2>
-          <p class="text-xs text-slate-400">RSW Magazin blättern & offline lesen</p>
-        </div>
-        
-        <!-- KW Selector dropdown -->
-        <select id="epaperIssueSelector" class="bg-slate-900 border border-slate-800 text-xs rounded-lg px-2.5 py-1.5 text-slate-200 focus:outline-none focus:border-sky-500">
-          <!-- Populated from CMS -->
-        </select>
-      </div>
-
-      <!-- Reader Display Box -->
-      <div class="rounded-2xl border border-slate-800 bg-slate-900 overflow-hidden shadow-2xl flex flex-col">
-        <!-- Reader Header Controls -->
-        <div class="bg-slate-950/80 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-orange-400"></span>
-            <span id="readerTitle" class="text-xs font-bold text-slate-200 truncate max-w-[160px] sm:max-w-none">RSW Magazin</span>
-            <span id="pageIndicator" class="text-[11px] text-slate-400 font-mono">1 / 6</span>
-          </div>
-
-          <div class="flex items-center gap-2">
-            <button onclick="shareViaWhatsApp('ePaper')" title="ePaper auf WhatsApp teilen" class="flex items-center gap-1 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-[#25D366] text-xs px-2.5 py-1 rounded-lg border border-[#25D366]/40 transition font-semibold">
-              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-              <span>Teilen</span>
-            </button>
-            <a id="downloadPdfAnchor" href="#" target="_blank" class="flex items-center gap-1 bg-slate-800 hover:bg-slate-700 text-sky-400 text-xs px-2.5 py-1 rounded-lg transition font-medium border border-slate-700/60">
-              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-              <span>PDF</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Simulated Interactive Page Viewer -->
-        <div id="epaperSwipeArea" class="relative bg-slate-950 min-h-[380px] sm:min-h-[440px] flex items-center justify-center p-3 select-none overflow-hidden">
-          <div id="readerPageCard" class="w-full max-w-sm rounded-xl overflow-hidden shadow-2xl bg-slate-900 border border-slate-800 text-slate-200 transition duration-300 flex flex-col justify-between">
-            <!-- Dynamically populated page snippet -->
-          </div>
-
-          <!-- Page flip buttons -->
-          <button id="readerPrevBtn" class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 backdrop-blur-md text-white border border-slate-700 flex items-center justify-center hover:bg-slate-800 disabled:opacity-30 disabled:pointer-events-none transition shadow-lg">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-          </button>
-          <button id="readerNextBtn" class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/80 backdrop-blur-md text-white border border-slate-700 flex items-center justify-center hover:bg-slate-800 disabled:opacity-30 disabled:pointer-events-none transition shadow-lg">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-          </button>
-        </div>
-
-        <!-- Reader Navigation Hint -->
-        <div class="bg-slate-950/60 px-4 py-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-          <span>Wische oder nutze die Pfeile zum Blättern</span>
-          <button onclick="shareAppGeneral()" class="text-sky-400 hover:underline">Link teilen</button>
-        </div>
-      </div>
-
-      <!-- Top Articles from the issue -->
-      <div class="space-y-3">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Aus dem Inhalt dieser Woche</h3>
-        <div id="epaperArticlesList" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <!-- Populated from issue data -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================== -->
-    <!-- TAB 4: TEILEN & INSTALLATION                   -->
-    <!-- ============================================== -->
-    <section id="tab-share" class="tab-content px-4 py-5 max-w-xl mx-auto space-y-6">
-      <div>
-        <h2 class="text-xl font-bold font-heading">App weiterempfehlen</h2>
-        <p class="text-xs text-slate-400">Bringe KLICK FM & RSW zu Deinen Freunden, in Vereine und Gemeinden.</p>
-      </div>
-
-      <!-- Big Sharing Card -->
-      <div class="rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950 p-5 space-y-4 shadow-xl">
-        <h3 class="text-sm font-bold text-white flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span>Direkt teilen über:</span>
-        </h3>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-          <!-- WhatsApp Button -->
-          <button onclick="shareViaWhatsApp('App')" class="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-slate-950 font-bold text-xs py-3 px-3 rounded-xl transition shadow-md active:scale-95">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-            <span>WhatsApp Chat</span>
-          </button>
-
-          <!-- Native Smartphone Share -->
-          <button onclick="shareAppGeneral()" class="flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs py-3 px-3 rounded-xl transition shadow-md active:scale-95">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
-            <span>Menü öffnen</span>
-          </button>
-
-          <!-- Copy Link -->
-          <button onclick="copyToClipboard()" class="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs py-3 px-3 rounded-xl transition shadow-md active:scale-95">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-            <span>Link kopieren</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Installation Guide: Step-by-Step for Phones -->
-      <div class="space-y-4">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">App auf den Startbildschirm legen</h3>
-
-        <!-- iOS Guide -->
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3">
-          <div class="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center shrink-0">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 7.04c.66-.82 1.11-1.96.99-3.04-1 .04-2.14.67-2.81 1.45-.58.67-1.1 1.83-.96 2.9.12.01 2.12-.49 2.78-1.31z"/></svg>
-          </div>
-          <div class="text-xs space-y-1">
-            <p class="font-bold text-white">iPhone & iPad (Safari)</p>
-            <p class="text-slate-400 leading-relaxed">
-              Tippe unten in der Safari-Leiste auf das <span class="text-white font-semibold">Teilen-Symbol</span> (Viereck mit Pfeil nach oben) und wähle danach <span class="text-sky-400 font-semibold">„Zum Home-Bildschirm“</span> aus.
-            </p>
-          </div>
-        </div>
-
-        <!-- Android Guide -->
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3">
-          <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9992.4482.9992.9993s-.4482.9997-.9992.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993s-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8 12 8s-3.5902.4116-5.1368 1.4497L4.8409 5.9467a.416.416 0 00-.5676-.1521.416.416 0 00-.1521.5676l1.9973 3.4592C2.6889 11.6967.5 15.5235.5 20h23c0-4.4765-2.1889-8.3033-5.6185-10.6786"/></svg>
-          </div>
-          <div class="text-xs space-y-1">
-            <p class="font-bold text-white">Android & Google Chrome</p>
-            <p class="text-slate-400 leading-relaxed">
-              Tippe oben rechts auf das <span class="text-white font-semibold">Drei-Punkte-Menü</span> und wähle <span class="text-emerald-400 font-semibold">„App installieren“</span> oder <span class="text-emerald-400 font-semibold">„Zum Startbildschirm hinzufügen“</span>.
-            </p>
-          </div>
-        </div>
+    <!-- Tab 3: Flipbooks / ePaper -->
+    <section id="tab-flipbooks" class="tab-panel hidden space-y-4">
+      <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+        <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i>
+        <span>ePaper Flipbooks (aflip.in)</span>
+      </h3>
+      <div id="epaper-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <p class="text-xs text-slate-500 col-span-2">Lade ePaper Ausgaben...</p>
       </div>
     </section>
 
   </main>
 
-  <!-- ============================================== -->
-  <!-- PERSISTENT MINI-PLAYER (Always floating)       -->
-  <!-- ============================================== -->
-  <div id="miniPlayerBar" class="fixed bottom-16 left-0 right-0 max-w-xl mx-auto px-3 z-40">
-    <div class="bg-slate-900/95 border border-slate-800 shadow-2xl backdrop-blur-xl rounded-2xl p-2 flex items-center justify-between gap-3">
-      
-      <!-- Track Thumbnail & Infos -->
-      <div class="flex items-center gap-3 overflow-hidden cursor-pointer flex-1" onclick="switchTab('tab-radio')">
-        <div class="relative w-11 h-11 rounded-xl overflow-hidden bg-slate-800 shrink-0 border border-slate-700/60">
-          <img id="miniThumbnail" 
-               src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=120&auto=format&fit=crop" 
-               class="w-full h-full object-cover" 
-               alt="Playing Artwork">
-          <div id="miniPlayingWave" class="hidden absolute inset-0 bg-sky-500/20 backdrop-blur-[1px] flex items-center justify-center">
-            <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
-          </div>
-        </div>
-        <div class="min-w-0 flex-1">
-          <p id="miniTrackTitle" class="text-xs font-bold text-slate-100 truncate">KLICK FM Live Stream</p>
-          <p id="miniTrackSubtitle" class="text-[11px] text-slate-400 truncate">Rhein-Sieg & Westerwald</p>
-        </div>
-      </div>
+  <!-- Audio Element für Radio -->
+  <audio id="radio-stream" preload="none" src="https://stream.laut.fm/klickfm"></audio>
 
-      <!-- Controls & Share -->
-      <div class="flex items-center gap-2 shrink-0">
-        <!-- Quick WhatsApp Share current audio -->
-        <button onclick="shareViaWhatsApp('NowPlaying')" title="Titel auf WhatsApp teilen" 
-                class="w-8 h-8 rounded-full bg-[#25D366]/15 hover:bg-[#25D366]/30 text-[#25D366] flex items-center justify-center active:scale-95 transition">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-        </button>
-
-        <!-- Mini Play/Pause Button -->
-        <button id="miniPlayBtn" class="w-9 h-9 rounded-full bg-sky-500 hover:bg-sky-400 text-slate-950 flex items-center justify-center shadow-md active:scale-95 transition">
-          <svg id="miniPlaySvg" class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================== -->
-  <!-- BOTTOM NAVIGATION (4 TABS)                     -->
-  <!-- ============================================== -->
-  <nav class="fixed bottom-0 left-0 right-0 bg-slate-950/95 border-t border-slate-800/80 backdrop-blur-lg z-50 px-3 py-1.5 safe-area-pb">
-    <div class="max-w-md mx-auto grid grid-cols-4 gap-1">
-      
-      <!-- Radio Tab -->
-      <button class="nav-tab active flex flex-col items-center justify-center py-1.5 rounded-xl text-sky-400 transition" onclick="switchTab('tab-radio')">
-        <svg class="w-5 h-5 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.85 1.2 5.41 3.12 7.24l1.42-1.42C4.95 16.36 4 14.29 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 2.29-.95 4.36-2.54 5.82l1.42 1.42C20.8 17.41 22 14.85 22 12c0-5.52-4.48-10-10-10zm0 4c-3.31 0-6 2.69-6 6 0 1.71.72 3.25 1.88 4.35l1.42-1.42C8.52 14.21 8 13.16 8 12c0-2.21 1.79-4 4-4s4 1.79 4 4c0 1.16-.52 2.21-1.3 2.93l1.42 1.42C17.28 15.25 18 13.71 18 12c0-3.31-2.69-6-6-6zm0 4a2 2 0 100 4 2 2 0 000-4z"/></svg>
-        <span class="text-[10px] font-bold">Radio</span>
+  <!-- Bottom Navigation -->
+  <nav class="flex-none bg-slate-900/95 backdrop-blur-md border-t border-slate-800 px-6 py-2.5 fixed bottom-0 left-0 right-0 z-30 max-w-2xl mx-auto">
+    <div class="flex items-center justify-around">
+      <button onclick="switchTab('radio')" id="nav-radio" class="nav-btn flex flex-col items-center space-y-1 text-sky-400 transition-colors">
+        <i data-lucide="radio" class="w-5 h-5"></i>
+        <span class="text-[10px] font-semibold">Radio</span>
       </button>
-
-      <!-- Podcasts Tab -->
-      <button class="nav-tab flex flex-col items-center justify-center py-1.5 rounded-xl text-slate-400 hover:text-slate-200 transition" onclick="switchTab('tab-podcasts')">
-        <svg class="w-5 h-5 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+      <button onclick="switchTab('podcasts')" id="nav-podcasts" class="nav-btn flex flex-col items-center space-y-1 text-slate-400 hover:text-slate-200 transition-colors">
+        <i data-lucide="mic" class="w-5 h-5"></i>
         <span class="text-[10px] font-semibold">Podcasts</span>
       </button>
-
-      <!-- ePaper Tab -->
-      <button class="nav-tab flex flex-col items-center justify-center py-1.5 rounded-xl text-slate-400 hover:text-slate-200 transition" onclick="switchTab('tab-epaper')">
-        <svg class="w-5 h-5 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm-1 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>
-        <span class="text-[10px] font-semibold">ePaper</span>
+      <button onclick="switchTab('flipbooks')" id="nav-flipbooks" class="nav-btn flex flex-col items-center space-y-1 text-slate-400 hover:text-slate-200 transition-colors">
+        <i data-lucide="book-open" class="w-5 h-5"></i>
+        <span class="text-[10px] font-semibold">Flipbooks</span>
       </button>
-
-      <!-- Share / Install Tab -->
-      <button class="nav-tab flex flex-col items-center justify-center py-1.5 rounded-xl text-slate-400 hover:text-slate-200 transition" onclick="switchTab('tab-share')">
-        <svg class="w-5 h-5 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+      <button onclick="shareApp()" class="nav-btn flex flex-col items-center space-y-1 text-slate-400 hover:text-slate-200 transition-colors">
+        <i data-lucide="share-2" class="w-5 h-5"></i>
         <span class="text-[10px] font-semibold">Teilen</span>
       </button>
-
     </div>
   </nav>
 
-  <!-- Interactive Toast Notification -->
-  <div id="toastNotification" class="fixed top-14 left-1/2 -translate-x-1/2 bg-slate-900 border border-slate-700 text-white px-4 py-2 rounded-xl text-xs shadow-2xl opacity-0 pointer-events-none transition-all duration-300 z-50 flex items-center gap-2">
-    <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-    <span id="toastNotificationText">Hinweis</span>
-  </div>
-
-  <!-- Hidden Native Audio Engine -->
-  <audio id="coreAudioPlayer" preload="none"></audio>
-
-  <!-- ============================================== -->
-  <!-- JAVASCRIPT: LOGIC, CMS & AUDIO ENGINE          -->
-  <!-- ============================================== -->
+  <!-- Scripts -->
   <script>
-    // --- APP DATA DEFAULTS & FALLBACKS ---
-    const DEFAULT_CMS_DATA = {
-      radio: {
-        stream_url: "https://stream.laut.fm/rsw-ein-klick",
-        station_name: "KLICK FM",
-        claim: "Die besten Hits der 60er, 70er, 80er & 90er · Regionale Infos",
-        cover_url: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=600&auto=format&fit=crop",
-        schedule: [
-          { time: "06:30 - 09:30", title: "RSW Guten Morgen & Regional-Flash", desc: "Wetter, Verkehr & News für SU, NR, WW, AK", isLive: false },
-          { time: "09:30 - 17:00", title: "Der Beste Musikmix & Pop-Klassiker", desc: "Hits am laufenden Band & 90-Sekunden Lokal-Update", isLive: true },
-          { time: "17:00 - 19:30", title: "RSW Feierabend & Kommunal-Report", desc: "Talks mit Bürgermeistern, Vereinen & Handwerk", isLive: false },
-          { time: "19:30 - 00:00", title: "KLICK FM Lounge & Rock Classics", desc: "Entspannt durch den Abend mit Kult-Tracks", isLive: false }
-        ]
-      },
-      ticker: [
-        "A3 / B42: Freie Fahrt im Berufsverkehr zwischen Siebengebirge und Neuwied",
-        "Westerwaldkreis: Neue Kultur- und Wandertermine für November online",
-        "Rhein-Sieg-Kreis: Förderprogramm für Solardächer auf Vereinsheimen gestartet",
-        "Altenkirchen: Das neue Kommunal-ePaper ist ab sofort verfügbar"
-      ],
-      epaper_issues: [
-        {
-          id: "kw45_2026",
-          kw: "KW 45 / 2026",
-          title: "RSW Magazin • KW 45",
-          pdf_url: "#download-kw45.pdf",
-          pages: [
-            {
-              num: 1,
-              category: "Titelthema",
-              headline: "Wirtschaftsachse Rhein-Westerwald im Fokus",
-              text: "Wie mittelständische Betriebe in Neuwied, Altenkirchen und im Rhein-Sieg-Kreis modernste Technologien nutzen und Fachkräfte binden.",
-              img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80"
-            },
-            {
-              num: 2,
-              category: "Rhein-Sieg (SU)",
-              headline: "Neues Taktkonzept für Bahn & Schnellbusse",
-              text: "Kreistag beschließt Ausbau der Ost-West-Verbindungen. Bessere Anbindung für Pendler zwischen Siegburg, Eitorf und Hennef.",
-              img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80"
-            },
-            {
-              num: 3,
-              category: "Westerwald (WW)",
-              headline: "Nachhaltiges Bauen: Holzbau boomt",
-              text: "Regionale Sägewerke und Architekten setzen auf zertifiziertes Holz aus heimischen Wäldern für kommunale Neubauten.",
-              img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80"
-            },
-            {
-              num: 4,
-              category: "Neuwied & AK",
-              headline: "Kultur-Highlights & Adventsmärkte 2026",
-              text: "Übersicht aller historischen Märkte, Schloss-Konzerte und regionalen Ausstellungen im Deich- und Siegtal.",
-              img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80"
-            }
-          ]
-        },
-        {
-          id: "kw44_2026",
-          kw: "KW 44 / 2026",
-          title: "RSW Magazin • KW 44",
-          pdf_url: "#download-kw44.pdf",
-          pages: [
-            {
-              num: 1,
-              category: "Rückblick",
-              headline: "Herbst-Bilanz der regionalen Betriebe",
-              text: "Handwerkskammern und Landwirtschaft ziehen positive Zwischenbilanz für den Herbst.",
-              img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=80"
-            }
-          ]
-        }
-      ],
-      podcasts: [
-        {
-          id: "pod-1",
-          region: "SU",
-          regionName: "Rhein-Sieg-Kreis",
-          title: "RSW Fokus: Ausbau der Siegtalstrecke & ÖPNV",
-          desc: "Experten und Bürgerinitiativen im Gespräch über Taktzeiten und Pünktlichkeit.",
-          duration: "24 Min",
-          date: "04. Nov 2026",
-          audio_url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-          cover: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&q=80"
-        },
-        {
-          id: "pod-2",
-          region: "WW",
-          regionName: "Westerwaldkreis",
-          title: "Westerwälder Meister: Zwischen Tradition & KI",
-          desc: "Wie ein Traditionsbetrieb in Montabaur moderne Fertigungsprozesse meistert.",
-          duration: "31 Min",
-          date: "02. Nov 2026",
-          audio_url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-          cover: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80"
-        },
-        {
-          id: "pod-3",
-          region: "NR",
-          regionName: "Kreis Neuwied",
-          title: "Rheinufer neu gedacht: Hochwasserschutz & Flanieren",
-          desc: "Stadtplaner stellen das neue Uferkonzept der Deichstadt vor.",
-          duration: "19 Min",
-          date: "29. Okt 2026",
-          audio_url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-          cover: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&q=80"
-        },
-        {
-          id: "pod-4",
-          region: "AK",
-          regionName: "Kreis Altenkirchen",
-          title: "Das Siegtal blüht auf: Naturerlebnis & Wandertourismus",
-          desc: "Neue Premium-Wanderwege und Gastronomiekonzepte im ländlichen Raum.",
-          duration: "27 Min",
-          date: "26. Okt 2026",
-          audio_url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-          cover: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80"
-        }
-      ]
-    };
+    const radio = document.getElementById('radio-stream');
+    const playBtn = document.getElementById('main-play-btn');
+    const playIcon = document.getElementById('main-play-icon');
 
-    // --- APPLICATION STATE ---
-    let appData = DEFAULT_CMS_DATA;
-    let isPlaying = false;
-    let currentMode = 'radio'; // 'radio' or 'podcast'
-    let currentEpisode = null;
-    let activeEpaper = null;
-    let currentReaderPage = 1;
-    const player = document.getElementById('coreAudioPlayer');
-
-    // --- CMS DYNAMIC FETCH WITH FALLBACK ---
-    async function loadCmsData() {
-      try {
-        const response = await fetch('content.json?v=' + Date.now());
-        if (response.ok) {
-          const remoteData = await response.json();
-          // Merge with defaults
-          appData = { ...DEFAULT_CMS_DATA, ...remoteData };
-          console.log("CMS content.json erfolgreich geladen.");
-        }
-      } catch (err) {
-        console.warn("content.json noch nicht vorhanden, verwende Standard-Inhalte:", err);
+    function toggleRadio() {
+      if (radio.paused) {
+        radio.play().then(() => {
+          playIcon.setAttribute('data-lucide', 'pause');
+          lucide.createIcons();
+        }).catch(err => console.error("Stream-Start blockiert:", err));
+      } else {
+        radio.pause();
+        playIcon.setAttribute('data-lucide', 'play');
+        lucide.createIcons();
       }
-      initUiWithData();
     }
 
-    // --- INITIALIZE UI WITH LOADED CONTENT ---
-    function initUiWithData() {
-      // 1. Ticker
-      const tickerTrack = document.getElementById('newsTickerContent');
-      if (appData.ticker && appData.ticker.length > 0) {
-        const fullTicker = [...appData.ticker, ...appData.ticker].map(t => `<span class="inline-block mx-4">✦ ${t}</span>`).join('');
-        tickerTrack.innerHTML = fullTicker;
-      }
-
-      // 2. Radio & Sendeplan
-      document.getElementById('radioStationTitle').textContent = appData.radio.station_name || "KLICK FM";
-      document.getElementById('radioStationClaim').textContent = appData.radio.claim;
-      
-      const scheduleContainer = document.getElementById('programScheduleList');
-      scheduleContainer.innerHTML = '';
-      appData.radio.schedule.forEach(item => {
-        const div = document.createElement('div');
-        div.className = item.isLive 
-          ? "flex items-center justify-between p-3 rounded-xl bg-sky-500/10 border border-sky-500/30"
-          : "flex items-center justify-between p-3 rounded-xl bg-slate-900/80 border border-slate-800";
-        div.innerHTML = `
-          <div class="flex items-center gap-3">
-            <span class="text-xs font-mono font-bold ${item.isLive ? 'text-sky-400' : 'text-slate-400'}">${item.time}</span>
-            <div>
-              <p class="text-xs font-semibold ${item.isLive ? 'text-white font-bold' : 'text-slate-200'}">${item.title}</p>
-              <p class="text-[10px] text-slate-400">${item.desc}</p>
-            </div>
-          </div>
-          <span class="text-[10px] px-2 py-0.5 rounded font-bold ${item.isLive ? 'bg-sky-500/20 text-sky-300' : 'bg-slate-800 text-slate-400'}">
-            ${item.isLive ? 'JETZT' : 'PLAN'}
-          </span>
-        `;
-        scheduleContainer.appendChild(div);
-      });
-
-      // 3. Podcasts
-      renderPodcasts('ALL');
-
-      // 4. ePaper
-      initEpaperIssues();
+    function setVolume(val) {
+      radio.volume = val;
     }
 
-    // --- TABS LOGIC ---
     function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.nav-tab').forEach(b => {
-        b.classList.remove('text-sky-400', 'active');
-        b.classList.add('text-slate-400');
+      document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
+      document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('text-sky-400');
+        btn.classList.add('text-slate-400');
       });
-
-      const targetSection = document.getElementById(tabId);
-      if (targetSection) targetSection.classList.add('active');
-
-      const activeNavBtn = Array.from(document.querySelectorAll('.nav-tab')).find(b => b.getAttribute('onclick')?.includes(tabId));
-      if (activeNavBtn) {
-        activeNavBtn.classList.remove('text-slate-400');
-        activeNavBtn.classList.add('text-sky-400', 'active');
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('nav-' + tabId).classList.add('text-sky-400');
+      document.getElementById('nav-' + tabId).classList.remove('text-slate-400');
     }
 
-    // --- AUDIO CONTROLLER ENGINE ---
-    function setAudioPlayingState(active) {
-      isPlaying = active;
-      const mainSvg = document.getElementById('mainPlaySvg');
-      const miniSvg = document.getElementById('miniPlaySvg');
-      const visualizer = document.getElementById('radioVisualizer');
-      const miniWave = document.getElementById('miniPlayingWave');
-
-      if (active) {
-        mainSvg.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-        miniSvg.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-        visualizer.classList.remove('opacity-40');
-        miniWave.classList.remove('hidden');
+    function shareApp() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'KLICK FM & RSW Regional',
+          text: 'Radio, Podcasts & ePaper für Rhein-Sieg, Neuwied, Westerwald und AK:',
+          url: window.location.href
+        }).catch(() => {});
       } else {
-        mainSvg.innerHTML = '<path d="M8 5v14l11-7z"/>';
-        miniSvg.innerHTML = '<path d="M8 5v14l11-7z"/>';
-        visualizer.classList.add('opacity-40');
-        miniWave.classList.add('hidden');
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link in Zwischenablage kopiert!');
       }
     }
 
-    async function toggleAudioPlay() {
-      if (isPlaying) {
-        player.pause();
-        setAudioPlayingState(false);
-      } else {
-        if (!player.src || player.src === window.location.href) {
-          player.src = appData.radio.stream_url;
+    // JSON-Daten laden
+    async function loadContent() {
+      try {
+        const res = await fetch('content.json?t=' + Date.now());
+        if (!res.ok) return;
+        const data = await res.json();
+
+        // Ticker
+        if (data.ticker && Array.isArray(data.ticker)) {
+          const tickerText = data.ticker.join(' &nbsp;✦&nbsp; ');
+          document.getElementById('ticker-content').innerHTML = tickerText + ' &nbsp;✦&nbsp; ' + tickerText;
         }
-        try {
-          await player.play();
-          setAudioPlayingState(true);
-        } catch (e) {
-          console.warn("Autoplay block or error:", e);
-          showToast("Tippe erneut zum Starten");
-        }
-      }
-    }
 
-    function playLiveRadio() {
-      currentMode = 'radio';
-      currentEpisode = null;
-      player.src = appData.radio.stream_url;
-      
-      document.getElementById('miniTrackTitle').textContent = appData.radio.station_name + " Live";
-      document.getElementById('miniTrackSubtitle').textContent = "Rhein-Sieg & Westerwald";
-      document.getElementById('radioStationCover').src = appData.radio.cover_url;
-
-      toggleAudioPlay();
-      showToast("KLICK FM Live-Stream gestartet");
-    }
-
-    function playPodcastEpisode(episode) {
-      currentMode = 'podcast';
-      currentEpisode = episode;
-      player.src = episode.audio_url;
-
-      document.getElementById('miniTrackTitle').textContent = episode.title;
-      document.getElementById('miniTrackSubtitle').textContent = `${episode.regionName} • ${episode.duration}`;
-      document.getElementById('radioStationCover').src = episode.cover;
-      document.getElementById('radioStationTitle').textContent = episode.title;
-      document.getElementById('radioStationClaim').textContent = episode.regionName;
-      document.getElementById('radioShowTag').textContent = "PODCAST ON DEMAND";
-
-      player.play().then(() => {
-        setAudioPlayingState(true);
-        showToast(`Spiele: ${episode.title.substring(0, 25)}...`);
-      }).catch(err => {
-        showToast("Audio wird geladen...");
-      });
-    }
-
-    // --- PODCAST RENDERING & SEARCH ---
-    function renderPodcasts(region = 'ALL', query = '') {
-      const container = document.getElementById('podcastsListContainer');
-      container.innerHTML = '';
-
-      let list = appData.podcasts;
-      if (region !== 'ALL') {
-        list = list.filter(p => p.region === region);
-      }
-      if (query.trim() !== '') {
-        const q = query.toLowerCase();
-        list = list.filter(p => p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.regionName.toLowerCase().includes(q));
-      }
-
-      if (list.length === 0) {
-        container.innerHTML = `<div class="p-6 text-center text-xs text-slate-500">Keine Podcasts gefunden.</div>`;
-        return;
-      }
-
-      list.forEach(pod => {
-        const card = document.createElement('div');
-        card.className = "p-3 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition flex items-center justify-between gap-3";
-        card.innerHTML = `
-          <div class="flex items-center gap-3 min-w-0 flex-1 cursor-pointer" onclick='playPodcastById("${pod.id}")'>
-            <div class="relative w-14 h-14 rounded-xl overflow-hidden bg-slate-800 shrink-0">
-              <img src="${pod.cover}" alt="Cover" class="w-full h-full object-cover">
-              <span class="absolute top-1 left-1 bg-slate-950/80 text-orange-400 font-extrabold text-[9px] px-1 rounded">${pod.region}</span>
-            </div>
-            <div class="min-w-0 flex-1">
-              <span class="text-[10px] font-semibold text-slate-400 uppercase">${pod.regionName}</span>
-              <h4 class="text-xs font-bold text-slate-100 hover:text-sky-400 transition truncate">${pod.title}</h4>
-              <p class="text-[11px] text-slate-400 truncate">${pod.desc}</p>
-              <div class="flex items-center gap-2 mt-1 text-[10px] text-slate-500 font-mono">
-                <span>${pod.date}</span>
-                <span>•</span>
-                <span>${pod.duration}</span>
+        // Podcasts
+        if (data.podcasts && Array.isArray(data.podcasts)) {
+          const pList = document.getElementById('podcasts-list');
+          pList.innerHTML = data.podcasts.map(p => `
+            <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">${p.region || 'RSW'}</span>
+                <h4 class="text-sm font-bold text-white mt-1">${p.title}</h4>
+                <p class="text-[11px] text-slate-400 mt-0.5">${p.date || ''} · ${p.duration || ''}</p>
               </div>
+              <a href="${p.url}" target="_blank" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-sky-500 flex items-center justify-center text-slate-200 hover:text-white transition-colors">
+                <i data-lucide="play" class="w-4 h-4 ml-0.5"></i>
+              </a>
             </div>
-          </div>
-          <div class="flex items-center gap-1.5 shrink-0">
-            <!-- Share podcast button -->
-            <button onclick='sharePodcast("${pod.title}", "${pod.regionName}")' title="Folge teilen" class="p-2 rounded-full bg-[#25D366]/15 hover:bg-[#25D366]/30 text-[#25D366] transition">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-            </button>
-            <!-- Play episode button -->
-            <button onclick='playPodcastById("${pod.id}")' class="w-8 h-8 rounded-full bg-slate-800 hover:bg-sky-500 hover:text-slate-950 text-slate-200 flex items-center justify-center transition">
-              <svg class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function playPodcastById(id) {
-      const p = appData.podcasts.find(item => item.id === id);
-      if (p) playPodcastEpisode(p);
-    }
-
-    // Podcast Region Filters
-    document.querySelectorAll('.podcast-filter').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.podcast-filter').forEach(b => {
-          b.classList.remove('bg-sky-500', 'text-white', 'font-bold');
-          b.classList.add('bg-slate-900', 'text-slate-400');
-        });
-        btn.classList.add('bg-sky-500', 'text-white', 'font-bold');
-        btn.classList.remove('bg-slate-900', 'text-slate-400');
-        
-        renderPodcasts(btn.getAttribute('data-region'), document.getElementById('podcastSearch').value);
-      });
-    });
-
-    document.getElementById('podcastSearch').addEventListener('input', (e) => {
-      const activeFilter = document.querySelector('.podcast-filter.bg-sky-500')?.getAttribute('data-region') || 'ALL';
-      renderPodcasts(activeFilter, e.target.value);
-    });
-
-    // --- EPAPER VIEWER & ARCHIVE ---
-    function initEpaperIssues() {
-      const selector = document.getElementById('epaperIssueSelector');
-      selector.innerHTML = '';
-      appData.epaper_issues.forEach(issue => {
-        const opt = document.createElement('option');
-        opt.value = issue.id;
-        opt.textContent = issue.kw;
-        selector.appendChild(opt);
-      });
-
-      selector.addEventListener('change', (e) => {
-        loadEpaperIssue(e.target.value);
-      });
-
-      if (appData.epaper_issues.length > 0) {
-        loadEpaperIssue(appData.epaper_issues[0].id);
-      }
-    }
-
-    function loadEpaperIssue(issueId) {
-      activeEpaper = appData.epaper_issues.find(i => i.id === issueId) || appData.epaper_issues[0];
-      currentReaderPage = 1;
-      document.getElementById('readerTitle').textContent = activeEpaper.title;
-      document.getElementById('downloadPdfAnchor').href = activeEpaper.pdf_url;
-      renderCurrentEpaperPage();
-      renderEpaperArticles();
-    }
-
-    function renderCurrentEpaperPage() {
-      if (!activeEpaper || !activeEpaper.pages) return;
-      const page = activeEpaper.pages[currentReaderPage - 1];
-      const card = document.getElementById('readerPageCard');
-      document.getElementById('pageIndicator').textContent = `${currentReaderPage} / ${activeEpaper.pages.length}`;
-
-      card.innerHTML = `
-        <div class="p-4 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-[9px] font-bold text-orange-400 uppercase tracking-wider bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">${page.category}</span>
-            <span class="text-[10px] text-slate-500 font-mono">Seite ${page.num}</span>
-          </div>
-          <div class="aspect-video w-full rounded-lg overflow-hidden border border-slate-800 bg-slate-800">
-            <img src="${page.img}" alt="ePaper preview" class="w-full h-full object-cover">
-          </div>
-          <h3 class="text-sm font-bold text-white font-heading">${page.headline}</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">${page.text}</p>
-        </div>
-        <div class="p-3 bg-slate-950/70 border-t border-slate-800 flex items-center justify-between text-[10px] text-slate-400">
-          <span>${activeEpaper.kw}</span>
-          <span class="text-sky-400 font-semibold cursor-pointer" onclick="shareViaWhatsApp('ePaper')">Diese Ausgabe teilen ➔</span>
-        </div>
-      `;
-
-      document.getElementById('readerPrevBtn').disabled = currentReaderPage <= 1;
-      document.getElementById('readerNextBtn').disabled = currentReaderPage >= activeEpaper.pages.length;
-    }
-
-    function renderEpaperArticles() {
-      const list = document.getElementById('epaperArticlesList');
-      list.innerHTML = '';
-      if (!activeEpaper || !activeEpaper.pages) return;
-
-      activeEpaper.pages.forEach((p, idx) => {
-        const item = document.createElement('div');
-        item.className = "p-3 bg-slate-900 rounded-xl border border-slate-800 hover:border-slate-700 cursor-pointer flex flex-col justify-between";
-        item.innerHTML = `
-          <div>
-            <span class="text-[10px] font-bold text-sky-400">${p.category}</span>
-            <h4 class="text-xs font-bold text-slate-100 mt-1 line-clamp-2">${p.headline}</h4>
-          </div>
-          <div class="mt-2 flex items-center justify-between text-[10px] text-slate-500">
-            <span>Seite ${p.num}</span>
-            <span class="text-sky-400 font-semibold">Öffnen</span>
-          </div>
-        `;
-        item.addEventListener('click', () => {
-          currentReaderPage = idx + 1;
-          renderCurrentEpaperPage();
-          document.getElementById('epaperSwipeArea').scrollIntoView({ behavior: 'smooth' });
-        });
-        list.appendChild(item);
-      });
-    }
-
-    // Flip controls
-    document.getElementById('readerPrevBtn').addEventListener('click', () => {
-      if (currentReaderPage > 1) {
-        currentReaderPage--;
-        renderCurrentEpaperPage();
-      }
-    });
-    document.getElementById('readerNextBtn').addEventListener('click', () => {
-      if (activeEpaper && currentReaderPage < activeEpaper.pages.length) {
-        currentReaderPage++;
-        renderCurrentEpaperPage();
-      }
-    });
-
-    // Touch Swipe on ePaper
-    let startX = 0;
-    const swipeZone = document.getElementById('epaperSwipeArea');
-    swipeZone.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; }, { passive: true });
-    swipeZone.addEventListener('touchend', e => {
-      const diff = e.changedTouches[0].screenX - startX;
-      if (diff < -40 && currentReaderPage < activeEpaper.pages.length) {
-        currentReaderPage++;
-        renderCurrentEpaperPage();
-      } else if (diff > 40 && currentReaderPage > 1) {
-        currentReaderPage--;
-        renderCurrentEpaperPage();
-      }
-    }, { passive: true });
-
-    // --- SHARING MODULE (WHATSAPP, NATIVE SHARE, CLIPBOARD) ---
-    const APP_LINK = window.location.href;
-
-    function shareViaWhatsApp(context = 'App') {
-      let text = `📻 KLICK FM & RSW Regional – Die App für unsere Region!\nLive-Radio, lokale Podcasts (SU, NR, WW, AK) & das ePaper direkt im Smartphone: ${APP_LINK}`;
-      
-      if (context === 'Radio') {
-        text = `📻 Ich höre gerade KLICK FM Regional (Hits der 60er-90er & Regionalnews)! Hör mal rein: ${APP_LINK}`;
-      } else if (context === 'ePaper') {
-        text = `📰 Hier ist das neue digitale RSW Regional-ePaper (${activeEpaper ? activeEpaper.kw : 'Aktuelle Ausgabe'}) zum Blättern: ${APP_LINK}#epaper`;
-      } else if (context === 'NowPlaying' && currentEpisode) {
-        text = `🎧 Podcast-Empfehlung: "${currentEpisode.title}" (${currentEpisode.regionName}) auf KLICK FM Regional anhören: ${APP_LINK}`;
-      }
-
-      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-      window.open(url, '_blank');
-    }
-
-    function sharePodcast(title, district) {
-      const text = `🎧 Podcast-Tipp: "${title}" aus dem ${district} auf KLICK FM Regional anhören: ${APP_LINK}`;
-      if (navigator.share) {
-        navigator.share({ title: title, text: text, url: APP_LINK }).catch(() => {});
-      } else {
-        const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-        window.open(url, '_blank');
-      }
-    }
-
-    async function shareAppGeneral() {
-      const shareData = {
-        title: "KLICK FM & RSW Regional",
-        text: "Radio, Podcasts & ePaper für Rhein-Sieg, Neuwied, Westerwald und Altenkirchen.",
-        url: APP_LINK
-      };
-
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-        } catch (err) {
-          // aborted by user
+          `).join('');
         }
-      } else {
-        shareViaWhatsApp('App');
-      }
-    }
 
-    function copyToClipboard() {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(APP_LINK).then(() => {
-          showToast("Link in die Zwischenablage kopiert!");
-        }).catch(() => {
-          fallbackPrompt();
-        });
-      } else {
-        fallbackPrompt();
-      }
-    }
-
-    function fallbackPrompt() {
-      prompt("Link kopieren:", APP_LINK);
-    }
-
-    function showToast(text) {
-      const el = document.getElementById('toastNotification');
-      document.getElementById('toastNotificationText').textContent = text;
-      el.classList.remove('opacity-0', 'pointer-events-none');
-      setTimeout(() => {
-        el.classList.add('opacity-0', 'pointer-events-none');
-      }, 2600);
-    }
-
-    // --- CONTROLS LISTENERS ---
-    document.getElementById('mainPlayBtn').addEventListener('click', toggleAudioPlay);
-    document.getElementById('miniPlayBtn').addEventListener('click', toggleAudioPlay);
-    document.getElementById('radioRefreshBtn').addEventListener('click', playLiveRadio);
-
-    // Volume Slider
-    const volumeSlider = document.getElementById('volumeControl');
-    volumeSlider.addEventListener('input', (e) => {
-      const val = parseFloat(e.target.value);
-      player.volume = val;
-    });
-
-    // Mute Button
-    document.getElementById('radioMuteBtn').addEventListener('click', () => {
-      player.muted = !player.muted;
-      showToast(player.muted ? "Stummgeschaltet" : "Ton an");
-    });
-
-    // PWA Install prompt integration
-    let pwaPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      pwaPrompt = e;
-      const btn = document.getElementById('pwaInstallBtn');
-      btn.classList.remove('hidden');
-      btn.classList.add('flex');
-      btn.addEventListener('click', async () => {
-        if (pwaPrompt) {
-          pwaPrompt.prompt();
-          const choice = await pwaPrompt.userChoice;
-          if (choice.outcome === 'accepted') {
-            btn.classList.add('hidden');
-          }
-          pwaPrompt = null;
+        // Flipbooks / ePaper
+        if (data.epaper && Array.isArray(data.epaper)) {
+          const eList = document.getElementById('epaper-list');
+          eList.innerHTML = data.epaper.map(ep => `
+            <a href="${ep.url}" target="_blank" rel="noopener noreferrer" class="bg-slate-900/80 p-3 rounded-2xl border border-slate-800 block hover:border-sky-500/50 transition-all">
+              <div class="aspect-[4/3] rounded-xl overflow-hidden bg-slate-950 mb-3 border border-slate-800/80">
+                <img src="${ep.cover || 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=400&auto=format&fit=crop'}" alt="${ep.title}" class="w-full h-full object-cover">
+              </div>
+              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">${ep.region || 'ePaper'}</span>
+              <h4 class="text-sm font-bold text-white mt-1 truncate">${ep.title}</h4>
+            </a>
+          `).join('');
         }
+
+        lucide.createIcons();
+      } catch (e) {
+        console.warn('content.json konnte nicht geladen werden', e);
+      }
+    }
+
+    // PWA Service Worker Inline-Registrierung für Android-Installierbarkeit
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        const swBlob = new Blob([
+          `self.addEventListener('install', e => self.skipWaiting());
+           self.addEventListener('activate', e => self.clients.claim());
+           self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => new Response('Offline'))));`
+        ], { type: 'text/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
       });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadContent();
     });
-
-    // --- BOOTSTRAP ON LOAD ---
-    window.onload = function() {
-      player.volume = 0.85;
-      loadCmsData();
-
-      // Check URL hashes for deep links (#epaper, #podcasts, #share)
-      const h = window.location.hash.replace('#', '');
-      if (h === 'epaper') switchTab('tab-epaper');
-      if (h === 'podcasts') switchTab('tab-podcasts');
-      if (h === 'share') switchTab('tab-share');
-    };
   </script>
 </body>
 </html>
