@@ -1,0 +1,23 @@
+{
+  "name": "KLICK FM & RSW Regional",
+  "short_name": "KLICK FM",
+  "description": "Radio, Podcasts & ePaper für Rhein-Sieg, Neuwied, Westerwald und Altenkirchen",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#0284c7",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=192&auto=format&fit=crop",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=512&auto=format&fit=crop",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
